@@ -1,0 +1,80 @@
+scanner.onFrameRead = function (results) {
+
+        for (let i = 0; i < results.length; i++) {
+            // console.log(result.barcodeFormatString + '\t' + result.barcodeText);
+            let result = results[i];
+            alert(result);
+            let cvs = document.createElement('canvas');
+            cvs.style.position = 'absolute';
+            let x1 = result.localizationResult.x1;
+            let y1 = result.localizationResult.y1;
+            let x2 = result.localizationResult.x2;
+            let y2 = result.localizationResult.y2;
+            let x3 = result.localizationResult.x3;
+            let y3 = result.localizationResult.y3;
+            let x4 = result.localizationResult.x4;
+            let y4 = result.localizationResult.y4;
+
+            let leftMin = Math.min(x1, x2, x3, x4);
+            let rightMax = Math.max(x1, x2, x3, x4);
+            let topMin = Math.min(y1, y2, y3, y4);
+            let bottomMax = Math.max(y1, y2, y3, y4);
+            cvs.style.left = leftMin + 'px';
+            cvs.style.top = topMin + 'px';
+            cvs.width = rightMax - leftMin;
+            cvs.height = bottomMax - topMin;
+
+            let _x1 = x1 - leftMin;
+            let _x2 = x2 - leftMin;
+            let _x3 = x3 - leftMin;
+            let _x4 = x4 - leftMin;
+            let _y1 = y1 - topMin;
+            let _y2 = y2 - topMin;
+            let _y3 = y3 - topMin;
+            let _y4 = y4 - topMin;
+            let ctx = cvs.getContext('2d');
+            ctx.fillStyle = 'rgba(254,180,32,0.3)';
+            ctx.beginPath();
+            ctx.moveTo(_x1, _y1);
+            ctx.lineTo(_x2, _y2);
+            ctx.lineTo(_x3, _y3);
+            ctx.lineTo(_x4, _y4);
+            ctx.fill();
+            $cvsContainer.append(cvs);
+
+            setTimeout(function () {
+                $(cvs).remove();
+            }, 300);
+        }
+        if (results.length) {
+            ringBell();
+        }
+        $('.rc-text').each(function () {
+            let txt = this.dbrResultBoxTxt;
+            let format = this.dbrResultBoxFormat;
+            for (let i = 0; i < results.length; ++i) {
+                var result = results[i];
+                if (result.barcodeText === txt && (result.barcodeFormat|result.barcodeFormat_2) === format) {
+                    ++this.dbrCount;
+
+                    let spCount;
+                    let lastEl = this.children[this.children.length - 1];
+                    if (lastEl.dbrComeUpCount) {
+                        spCount = lastEl;
+                    } else {
+                        spCount = document.createElement('span');
+                        this.appendChild(spCount);
+                    }
+                    spCount.className = 'rc-count';
+                    spCount.dbrComeUpCount = this.dbrCount;
+                    spCount.innerText = ' x' + this.dbrCount;
+
+                    this.dbrRmTimeoutId && clearTimeout(this.dbrRmTimeoutId);
+                    this.dbrRmTimeoutId = setTimeout(()=>{
+                        $(this).remove();
+                    }, 5000);
+                    break;
+                }
+            }
+        });
+    };
