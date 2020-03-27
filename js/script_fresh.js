@@ -90,11 +90,25 @@ Dynamsoft.BarcodeScanner.createInstance().then(async (instance)=>{
         const api_key = "pc5bedvbag3y8lkaljlb7qvzysz87p";
         const url = proxyurl + "https://api.barcodelookup.com/v2/products?barcode=" + txt + "&formatted=y&key=" + api_key;
 
-
         fetch(url)
             .then(response => response.json())
             .then((data) => {
-                console.log(data['products'][0]);
+                var result = data['products'][0];
+                console.log(result);
+
+                var prodName = result['product_name'];
+                var barcode = result['barcode_number'];
+                var image = result['images'][0];
+                var ingredients = result['ingredients'];
+                var nutrFacts = result['nutrition_facts'];
+
+                document.getElementById("results-card").innerHTML =
+                    "<div class = 'img_container'>" +
+                    "<img src = '" + image + "' class = 'scanned_image'>" +
+                    "</div><br>" +
+                    "Name: " + prodName + "<br><br>" +
+                    "Barcode: " + barcode + "<br><br>";
+
             })
             .catch(err => {
                 throw err

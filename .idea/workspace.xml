@@ -16,6 +16,7 @@
   <component name="ProjectId" id="1ZgA8w38aeWZaB1jSUiRonPvTax" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="jsx.switch.disabled" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/js/voice" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.tslint" value="project" />
@@ -52,7 +53,7 @@
       <workItem from="1585250284681" duration="64000" />
       <workItem from="1585250363396" duration="173000" />
       <workItem from="1585250549644" duration="3021000" />
-      <workItem from="1585284375946" duration="4306000" />
+      <workItem from="1585284375946" duration="6222000" />
     </task>
     <servers />
   </component>
