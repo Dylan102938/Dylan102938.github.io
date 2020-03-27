@@ -103,11 +103,11 @@ Dynamsoft.BarcodeScanner.createInstance().then(async (instance)=>{
                 var nutrFacts = result['nutrition_facts'];
 
                 document.getElementById("results-card").innerHTML =
-                    "<div class = 'img_container'>" +
                     "<img src = '" + image + "' class = 'scanned_image'>" +
-                    "</div><br>" +
+                    "<br><br>" +
                     "Name: " + prodName + "<br><br>" +
-                    "Barcode: " + barcode + "<br><br>";
+                    "Barcode: " + barcode + "<br><br>" +
+                    "<button class = 'submit-button'>Add to Storage</button>";
 
             })
             .catch(err => {

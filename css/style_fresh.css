@@ -849,6 +849,20 @@ input:checked + .radio-btn::before {
     color: #000000;
     font-family: "Roboto", sans-serif;
     font-weight: 300;
+    text-align: center;
+}
+
+.submit-button {
+    padding: 12px;
+    font-weight: 100;
+    text-transform: uppercase;
+    color: white;
+    background-color: black;
+    cursor: pointer;
+    font-size: 14px;
+    border: 0px solid black;
+    letter-spacing: 0.15em;
+    border-radius: 2px;
 }
 
 .img_container {
