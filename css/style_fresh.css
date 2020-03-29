@@ -854,7 +854,7 @@ input:checked + .radio-btn::before {
     overflow: scroll;
 }
 
-.submit-button {
+#submit-button {
     padding: 12px;
     font-weight: 100;
     text-transform: uppercase;
@@ -872,7 +872,7 @@ input:checked + .radio-btn::before {
     text-align: center;
 }
 
-.scanned_image {
+#scanned_image {
     height: 50%;
     max-width: 100%;
 }

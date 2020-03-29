@@ -1,10 +1,15 @@
 var $video = document.getElementById('PVideo');
-
 var $cvsContainer = document.getElementById('canvasContainer');
 var scanner = null;
 var runtimeSettings = null;
 
+var prodName = "";
+var image = "";
+var ingredients = "";
+var nutrFacts = "";
+
 let deafultBarcodeFormatIds = null;
+
 function getQueryStringArgs() {
     var qs = (window.location.search.length > 0 ? window.location.search.substring(1) : ''),
         args = {},
@@ -826,7 +831,7 @@ Dynamsoft.BarcodeScanner.createInstance().then(async (instance)=>{
         };
 
         const proxyurl = "https://cors-anywhere.herokuapp.com/"; // Use a proxy to avoid CORS error
-        const api_key = "wmx9gaysbllsdx0xo8fvoepninbg4e";
+        const api_key = "cc2t637oihk3s49gsq6nbrwcdqcfcd";
         const url = proxyurl + "https://api.barcodelookup.com/v2/products?barcode=" + txt + "&formatted=y&key=" + api_key;
 
         fetch(url)
@@ -835,19 +840,18 @@ Dynamsoft.BarcodeScanner.createInstance().then(async (instance)=>{
                 var result = data['products'][0];
                 console.log(result);
 
-                var prodName = result['product_name'];
+                prodName = result['product_name'];
                 var barcode = result['barcode_number'];
-                var image = result['images'][0];
-                var ingredients = result['ingredients'];
-                var nutrFacts = result['nutrition_facts'];
+                image = result['images'][0];
+                ingredients = result['ingredients'];
+                nutrFacts = result['nutrition_facts'];
 
                 document.getElementById("results-card").innerHTML =
-                    "<img src = '" + image + "' class = 'scanned_image'>" +
+                    "<img src = '" + image + "' id = 'scanned_image'>" +
                     "<br><br>" +
-                    "Name: " + prodName + "<br><br>" +
+                    "<span id = 'name'> Name: " + prodName + "</span><br><br>" +
                     "Barcode: " + barcode + "<br><br>" +
-                    "<button class = 'submit-button'>Add to Storage</button>";
-
+                    "<button id = 'submit-button' onclick = 'uploadInfo()'>Add to Storage</button>";
             })
             .catch(err => {
                 throw err
@@ -1306,6 +1310,31 @@ $('#clearCache').click(function(){
     }
 });
 $('#MRegion').prop('checked', true);
+
+function uploadInfo() {
+    $.ajax({
+        type: "POST",
+        url: "upload.php",
+        dataType: "html",
+        data: {'name':prodName, 'image':image, 'ingredients':ingredients, 'nutrFacts':nutrFacts},
+        error: function(jqXHR, textStatus, errorThrown) {
+            alert('An error occurred... Look at the console (F12 or Ctrl+Shift+I, Console tab) for more information!');
+            console.log('jqXHR:');
+            console.log(jqXHR);
+            console.log('textStatus:');
+            console.log(textStatus);
+            console.log('errorThrown:');
+            console.log(errorThrown);
+        },
+        success: function (data) {
+            console.log(data);
+
+            document.getElementById("results-card").innerHTML =
+                "<br><h1 style = 'color: #219249; font-weight: 100;'>Item Added Successfully</h1>" +
+                "<br><img src = 'images/check-mark.png' width=80'>";
+        }
+    });
+}
 
 var getVideoFrame = () => {//eslint-disable-line
     if($video.paused){
