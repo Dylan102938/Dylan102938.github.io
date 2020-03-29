@@ -710,18 +710,13 @@ Dynamsoft.BarcodeScanner.createInstance().then(async (instance)=>{
             let videoComputedStyle = window.getComputedStyle($video);
             let videoComputedWidth = Math.round(parseFloat(videoComputedStyle.getPropertyValue('width')));
             let videoComputedHeight = Math.round(parseFloat(videoComputedStyle.getPropertyValue('height')));
-            let resizeRate = 1;
-            if (videoComputedWidth < $video.videoWidth) {
-                resizeRate = videoComputedWidth / $video.videoWidth;
-            }
-
-            $cvsContainer.style.transform = 'matrix(' + [resizeRate, 0, 0, resizeRate, 0, 0].join(',') + ')';
+            alert("reset region async: " + videoComputedWidth + " " + videoComputedHeight);
             $('.scanning-container').css({
                 'width': videoComputedWidth + 'px',
                 'height': videoComputedHeight + 'px'
             });
-            $cvsContainer.style.width = $video.videoWidth + 'px';
-            $cvsContainer.style.height = $video.videoHeight + 'px';
+            $cvsContainer.style.width = videoComputedWidth + 'px';
+            $cvsContainer.style.height = videoComputedHeight + 'px';
 
             runtimeSettings.region.regionLeft = runtimeSettings.region.regionTop = 0;
             runtimeSettings.region.regionRight = runtimeSettings.region.regionBottom = 100;
@@ -734,12 +729,7 @@ Dynamsoft.BarcodeScanner.createInstance().then(async (instance)=>{
             let videoComputedStyle = window.getComputedStyle($video);
             let videoComputedWidth = Math.round(parseFloat(videoComputedStyle.getPropertyValue('width')));
             let videoComputedHeight = Math.round(parseFloat(videoComputedStyle.getPropertyValue('height')));
-            let resizeRate = 1;
-            if (videoComputedWidth < $video.videoWidth) {
-                resizeRate = videoComputedWidth / $video.videoWidth;
-            }
-
-            $cvsContainer.style.transform = 'matrix(' + [resizeRate, 0, 0, resizeRate, 0, 0].join(',') + ')';
+            alert("set region: " + videoComputedHeight + " " + videoComputedWidth);
             $('.scanning-container').css({
                 'width': videoComputedWidth + 'px',
                 'height': videoComputedHeight + 'px'
@@ -1216,18 +1206,13 @@ let resetRegion = async () => {
     let videoComputedStyle = window.getComputedStyle($video);
     let videoComputedWidth = Math.round(parseFloat(videoComputedStyle.getPropertyValue('width')));
     let videoComputedHeight = Math.round(parseFloat(videoComputedStyle.getPropertyValue('height')));
-    let resizeRate = 1;
-    if (videoComputedWidth < $video.videoWidth) {
-        resizeRate = videoComputedWidth / $video.videoWidth;
-    }
-
-    $cvsContainer.style.transform = 'matrix(' + [resizeRate, 0, 0, resizeRate, 0, 0].join(',') + ')';
+    alert("Reset region: " + videoComputedWidth + " " + videoComputedHeight);
     $('.scanning-container').css({
         'width': videoComputedWidth + 'px',
         'height': videoComputedHeight + 'px'
     });
-    $cvsContainer.style.width = $video.videoWidth + 'px';
-    $cvsContainer.style.height = $video.videoHeight + 'px';
+    $cvsContainer.style.width = videoComputedWidth + 'px';
+    $cvsContainer.style.height = videoComputedHeight + 'px';
 
     runtimeSettings.region.regionLeft = runtimeSettings.region.regionTop = 0;
     runtimeSettings.region.regionRight = runtimeSettings.region.regionBottom = 100;
@@ -1240,12 +1225,12 @@ var setRegion = async () => {
     let videoComputedStyle = window.getComputedStyle($video);
     let videoComputedWidth = Math.round(parseFloat(videoComputedStyle.getPropertyValue('width')));
     let videoComputedHeight = Math.round(parseFloat(videoComputedStyle.getPropertyValue('height')));
+    alert(videoComputedWidth + " " + videoComputedHeight);
     let resizeRate = 1;
     if (videoComputedWidth < $video.videoWidth) {
         resizeRate = videoComputedWidth / $video.videoWidth;
     }
 
-    $cvsContainer.style.transform = 'matrix(' + [resizeRate, 0, 0, resizeRate, 0, 0].join(',') + ')';
     $('.scanning-container').css({
         'width': videoComputedWidth + 'px',
         'height': videoComputedHeight + 'px'
