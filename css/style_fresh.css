@@ -850,6 +850,7 @@ input:checked + .radio-btn::before {
     font-family: "Roboto", sans-serif;
     font-weight: 300;
     text-align: center;
+    overflow: scroll;
 }
 
 .submit-button {

@@ -13,8 +13,17 @@
       <executable />
     </execution>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
   <component name="ProjectId" id="1ZgA8w38aeWZaB1jSUiRonPvTax" />
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="jsx.switch.disabled" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/js/voice" />
@@ -53,7 +62,8 @@
       <workItem from="1585250284681" duration="64000" />
       <workItem from="1585250363396" duration="173000" />
       <workItem from="1585250549644" duration="3021000" />
-      <workItem from="1585284375946" duration="8328000" />
+      <workItem from="1585284375946" duration="11576000" />
+      <workItem from="1585450972645" duration="1045000" />
     </task>
     <servers />
   </component>
