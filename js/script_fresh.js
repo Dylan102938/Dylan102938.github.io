@@ -710,7 +710,6 @@ Dynamsoft.BarcodeScanner.createInstance().then(async (instance)=>{
             let videoComputedStyle = window.getComputedStyle($video);
             let videoComputedWidth = Math.round(parseFloat(videoComputedStyle.getPropertyValue('width')));
             let videoComputedHeight = Math.round(parseFloat(videoComputedStyle.getPropertyValue('height')));
-            alert("reset region async: " + videoComputedWidth + " " + videoComputedHeight);
             $('.scanning-container').css({
                 'width': videoComputedWidth + 'px',
                 'height': videoComputedHeight + 'px'
@@ -729,7 +728,6 @@ Dynamsoft.BarcodeScanner.createInstance().then(async (instance)=>{
             let videoComputedStyle = window.getComputedStyle($video);
             let videoComputedWidth = Math.round(parseFloat(videoComputedStyle.getPropertyValue('width')));
             let videoComputedHeight = Math.round(parseFloat(videoComputedStyle.getPropertyValue('height')));
-            alert("set region: " + videoComputedHeight + " " + videoComputedWidth);
             $('.scanning-container').css({
                 'width': videoComputedWidth + 'px',
                 'height': videoComputedHeight + 'px'
@@ -1206,7 +1204,6 @@ let resetRegion = async () => {
     let videoComputedStyle = window.getComputedStyle($video);
     let videoComputedWidth = Math.round(parseFloat(videoComputedStyle.getPropertyValue('width')));
     let videoComputedHeight = Math.round(parseFloat(videoComputedStyle.getPropertyValue('height')));
-    alert("Reset region: " + videoComputedWidth + " " + videoComputedHeight);
     $('.scanning-container').css({
         'width': videoComputedWidth + 'px',
         'height': videoComputedHeight + 'px'
